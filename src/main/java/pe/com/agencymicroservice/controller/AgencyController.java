@@ -29,8 +29,8 @@ public class AgencyController {
     }
 
     @GetMapping("/agency")
-    public ResponseEntity<List<Agency>> getAllAgency(){
-        List<Agency> guides = _agencyService.getAllAgency();
+    public ResponseEntity<List<GuideByAgencyResponse>> getAllAgency(){
+        List<GuideByAgencyResponse> guides = _agencyService.getAllAgency();
         return new ResponseEntity<>(guides, HttpStatus.OK);
     }
 
@@ -47,18 +47,8 @@ public class AgencyController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/agency/{id}")
-    public ResponseEntity<Agency> getAgencyById(@PathVariable("id") int id){
-        try {
-            Agency guide = _agencyService.getAgencyById(id);
-            return new ResponseEntity<>(guide, HttpStatus.OK);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @GetMapping("/agency-guide/{agencyId}")
-    public ResponseEntity<GuideByAgencyResponse> getGuidesByAgencyId(@PathVariable int agencyId) {
+    @GetMapping("/agency/{agencyId}")
+    public ResponseEntity<GuideByAgencyResponse> getByAgencyId(@PathVariable int agencyId) {
         return ResponseEntity.ok(_agencyService.getGuidesByAgencyId(agencyId));
     }
 

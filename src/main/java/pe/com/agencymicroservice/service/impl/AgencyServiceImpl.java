@@ -9,6 +9,7 @@ import pe.com.agencymicroservice.http.response.GuideByAgencyResponse;
 import pe.com.agencymicroservice.repository.AgencyRepository;
 import pe.com.agencymicroservice.service.AgencyService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,10 +26,34 @@ public class AgencyServiceImpl implements AgencyService {
         return _agencyRepository.save(_agency);
     }
 
+
     @Override
-    public List<Agency> getAllAgency() {
+    public List<GuideByAgencyResponse> getAllAgency() {
+        List<Agency> agencies = getAll();
+        List<GuideByAgencyResponse> responses = new ArrayList<>();
+
+        for (Agency agency : agencies) {
+            List<GuideDto> guidesDto = _guideClient.findAllGuideByAgencyId(agency.getId());
+            GuideByAgencyResponse response = GuideByAgencyResponse.builder()
+                    .Id(agency.getId())
+                    .Name(agency.getName())
+                    .Description(agency.getDescription())
+                    .PhoneNumber(agency.getPhoneNumber())
+                    .Email(agency.getEmail())
+                    .Address(agency.getAddress())
+                    .guidesDtoList(guidesDto)
+                    .build();
+            responses.add(response);
+        }
+
+        return responses;
+    }
+    public List<Agency> getAll() {
         return (List<Agency>) _agencyRepository.findAll();
     }
+
+
+
 
     @Override
     public void updateAgency(Agency _agency) {
@@ -40,14 +65,7 @@ public class AgencyServiceImpl implements AgencyService {
         _agencyRepository.deleteById(_id);
     }
 
-    @Override
-    public Agency getAgencyById(int _id) {
-        if(_agencyRepository.findById(_id).isPresent()){
-            return _agencyRepository.findById(_id).get();
-        }else{
-            throw new RuntimeException("Guide not found");
-        }
-    }
+
 
     @Override
     public GuideByAgencyResponse getGuidesByAgencyId(int _agencyId){
@@ -61,6 +79,7 @@ public class AgencyServiceImpl implements AgencyService {
 
 
         return GuideByAgencyResponse.builder()
+                .Id(agency.getId())
                 .Name(agency.getName())
                 .Description(agency.getDescription())
                 .PhoneNumber(agency.getPhoneNumber())

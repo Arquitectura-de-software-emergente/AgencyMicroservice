@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class GuideByAgencyResponse {
+    private int Id;
     private String Name;
     private String Description;
     private String PhoneNumber;
