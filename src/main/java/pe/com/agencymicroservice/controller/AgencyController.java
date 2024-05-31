@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.com.agencymicroservice.entities.Agency;
-import pe.com.agencymicroservice.http.response.GuideByAgencyResponse;
+import pe.com.agencymicroservice.http.response.AgencyResponse;
 import pe.com.agencymicroservice.service.AgencyService;
 
 import java.util.List;
@@ -29,8 +29,8 @@ public class AgencyController {
     }
 
     @GetMapping("/agency")
-    public ResponseEntity<List<GuideByAgencyResponse>> getAllAgency(){
-        List<GuideByAgencyResponse> guides = _agencyService.getAllAgency();
+    public ResponseEntity<List<AgencyResponse>> getAllAgency(){
+        List<AgencyResponse> guides = _agencyService.getAllAgency();
         return new ResponseEntity<>(guides, HttpStatus.OK);
     }
 
@@ -48,7 +48,7 @@ public class AgencyController {
     }
 
     @GetMapping("/agency/{agencyId}")
-    public ResponseEntity<GuideByAgencyResponse> getByAgencyId(@PathVariable int agencyId) {
+    public ResponseEntity<AgencyResponse> getByAgencyId(@PathVariable int agencyId) {
         return ResponseEntity.ok(_agencyService.getGuidesByAgencyId(agencyId));
     }
 

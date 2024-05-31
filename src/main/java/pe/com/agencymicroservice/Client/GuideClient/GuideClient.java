@@ -1,4 +1,4 @@
-package pe.com.agencymicroservice.Client;
+package pe.com.agencymicroservice.Client.GuideClient;
 
 import org.springframework.web.bind.annotation.GetMapping;
 

@@ -1,11 +1,11 @@
 package pe.com.agencymicroservice.http.response;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pe.com.agencymicroservice.Dto.GuideDto;
+import pe.com.agencymicroservice.Dto.TripDto;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class GuideByAgencyResponse {
+public class AgencyResponse {
     private int Id;
     private String Name;
     private String Description;
@@ -21,4 +21,5 @@ public class GuideByAgencyResponse {
     private String Email;
     private String Address;
     private List<GuideDto> guidesDtoList;
+    private List<TripDto> tripsDtoList;
 }
