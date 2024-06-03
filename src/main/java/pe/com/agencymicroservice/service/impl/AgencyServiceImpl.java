@@ -76,16 +76,13 @@ public class AgencyServiceImpl implements AgencyService {
 
     @Override
     public AgencyResponse getGuidesByAgencyId(int _agencyId){
-        System.out.println("Entrghdfgdfghdfghdfghdfgo???????????????dskjdgf");
+        //System.out.println("Entrghdfgdfghdfghdfghdfgo???????????????dskjdgf");
         Agency agency = _agencyRepository.findById(_agencyId).orElse(new Agency());
-        System.out.println("Segundo");
-        System.out.println("agency: " + _guideClient.findAllGuideByAgencyId(_agencyId));
+        //System.out.println("Segundo");
+        //System.out.println("agency: " + _guideClient.findAllGuideByAgencyId(_agencyId));
         List<GuideDto> guidesDto = _guideClient.findAllGuideByAgencyId(_agencyId);
-        System.out.println("tercero");
+        //System.out.println("tercero");
         List<TripDto> tripsDto = _tripClient.findAllTripByAgencyId(_agencyId);
-
-
-
         return AgencyResponse.builder()
                 .Id(agency.getId())
                 .Name(agency.getName())
