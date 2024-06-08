@@ -20,6 +20,6 @@ public class AgencyResponse {
     private String PhoneNumber;
     private String Email;
     private String Address;
-    private List<GuideDto> guidesDtoList;
-    private List<TripDto> tripsDtoList;
+    private List<GuideDto> guidesList;
+    private List<TripDto> tripsList;
 }

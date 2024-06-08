@@ -47,8 +47,8 @@ public class AgencyServiceImpl implements AgencyService {
                     .PhoneNumber(agency.getPhoneNumber())
                     .Email(agency.getEmail())
                     .Address(agency.getAddress())
-                    .guidesDtoList(guidesDto)
-                    .tripsDtoList(tripsDto)
+                    .guidesList(guidesDto)
+                    .tripsList(tripsDto)
                     .build();
             responses.add(response);
         }
@@ -90,8 +90,8 @@ public class AgencyServiceImpl implements AgencyService {
                 .PhoneNumber(agency.getPhoneNumber())
                 .Email(agency.getEmail())
                 .Address(agency.getAddress())
-                .guidesDtoList(guidesDto)
-                .tripsDtoList(tripsDto)
+                .guidesList(guidesDto)
+                .tripsList(tripsDto)
                 .build();
 
     }

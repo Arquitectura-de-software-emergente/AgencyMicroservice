@@ -16,7 +16,7 @@ public class GuideClientImpl implements GuideClient {
 
     @Autowired
     public GuideClientImpl(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("http://localhost:8080/api/v1").build();
+        this.webClient = webClientBuilder.baseUrl("http://localhost:8080/api/v1/guide").build();
             System.out.println("webClient: " + webClient);
     }
 
@@ -27,7 +27,7 @@ public class GuideClientImpl implements GuideClient {
 
             System.out.println("try: " + agencyId);
             return webClient.get()
-                    .uri("/guides/by-agency/{agencyId}", agencyId)
+                    .uri("/by-agency/{agencyId}", agencyId)
                     .retrieve()
                     .bodyToFlux(GuideDto.class)
                     .collectList()

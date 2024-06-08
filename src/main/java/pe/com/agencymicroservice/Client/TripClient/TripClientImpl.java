@@ -15,7 +15,7 @@ public class TripClientImpl implements TripClient{
 
     @Autowired
     public TripClientImpl(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("http://localhost:8082/api/v1").build();
+        this.webClient = webClientBuilder.baseUrl("http://localhost:8080/api/v1/trip").build();
         System.out.println("webClient: " + webClient);
     }
 
@@ -25,7 +25,7 @@ public class TripClientImpl implements TripClient{
 
             System.out.println("try: " + agencyId);
             return webClient.get()
-                    .uri("/trip/by-agency/{agencyId}", agencyId)
+                    .uri("/by-agency/{agencyId}", agencyId)
                     .retrieve()
                     .bodyToFlux(TripDto.class)
                     .collectList()

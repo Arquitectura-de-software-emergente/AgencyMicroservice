@@ -12,7 +12,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/agency")
 public class AgencyController {
     @Autowired
     private AgencyService _agencyService;
@@ -22,32 +22,32 @@ public class AgencyController {
 
 
     }
-    @PostMapping("/agency")
+    @PostMapping
     public ResponseEntity<Agency> createAgency(@RequestBody Agency _agency){
         Agency createdAgency = _agencyService.createAgency(_agency);
         return new ResponseEntity<>(createdAgency, HttpStatus.CREATED);
     }
 
-    @GetMapping("/agency")
+    @GetMapping
     public ResponseEntity<List<AgencyResponse>> getAllAgency(){
         List<AgencyResponse> guides = _agencyService.getAllAgency();
         return new ResponseEntity<>(guides, HttpStatus.OK);
     }
 
-    @PutMapping("/agency/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Void> updateAgency(@PathVariable("id") int id, @RequestBody Agency _agency){
         _agency.setId(id);
         _agencyService.updateAgency(_agency);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/agency/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAgency(@PathVariable("id") int id){
         _agencyService.deleteAgency(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/agency/{agencyId}")
+    @GetMapping("/{agencyId}")
     public ResponseEntity<AgencyResponse> getByAgencyId(@PathVariable int agencyId) {
         return ResponseEntity.ok(_agencyService.getGuidesByAgencyId(agencyId));
     }
