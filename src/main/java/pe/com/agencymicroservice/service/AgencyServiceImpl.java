@@ -1,15 +1,15 @@
-package pe.com.agencymicroservice.service.impl;
+package pe.com.agencymicroservice.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.com.agencymicroservice.Client.GuideClient.GuideClient;
-import pe.com.agencymicroservice.Client.TripClient.TripClient;
-import pe.com.agencymicroservice.Dto.GuideDto;
-import pe.com.agencymicroservice.Dto.TripDto;
-import pe.com.agencymicroservice.entities.Agency;
-import pe.com.agencymicroservice.http.response.AgencyResponse;
-import pe.com.agencymicroservice.repository.AgencyRepository;
-import pe.com.agencymicroservice.service.AgencyService;
+import pe.com.agencymicroservice.api.client.GuideClient;
+import pe.com.agencymicroservice.api.client.TripClient;
+import pe.com.agencymicroservice.mapping.dto.GuideDto;
+import pe.com.agencymicroservice.mapping.dto.TripDto;
+import pe.com.agencymicroservice.domain.model.Agency;
+import pe.com.agencymicroservice.resource.AgencyResponse;
+import pe.com.agencymicroservice.domain.persistence.AgencyRepository;
+import pe.com.agencymicroservice.domain.service.AgencyService;
 
 import java.util.ArrayList;
 import java.util.List;

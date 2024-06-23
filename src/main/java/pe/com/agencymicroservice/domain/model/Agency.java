@@ -1,4 +1,4 @@
-package pe.com.agencymicroservice.entities;
+package pe.com.agencymicroservice.domain.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

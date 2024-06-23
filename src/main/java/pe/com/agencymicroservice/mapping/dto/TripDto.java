@@ -1,4 +1,4 @@
-package pe.com.agencymicroservice.Dto;
+package pe.com.agencymicroservice.mapping.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

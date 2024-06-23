@@ -1,11 +1,11 @@
-package pe.com.agencymicroservice.http.response;
+package pe.com.agencymicroservice.resource;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pe.com.agencymicroservice.Dto.GuideDto;
-import pe.com.agencymicroservice.Dto.TripDto;
+import pe.com.agencymicroservice.mapping.dto.GuideDto;
+import pe.com.agencymicroservice.mapping.dto.TripDto;
 
 import java.util.List;
 

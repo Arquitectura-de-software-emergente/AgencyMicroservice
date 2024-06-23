@@ -1,7 +1,7 @@
-package pe.com.agencymicroservice.service;
+package pe.com.agencymicroservice.domain.service;
 
-import pe.com.agencymicroservice.entities.Agency;
-import pe.com.agencymicroservice.http.response.AgencyResponse;
+import pe.com.agencymicroservice.domain.model.Agency;
+import pe.com.agencymicroservice.resource.AgencyResponse;
 
 import java.util.List;
 

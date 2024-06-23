@@ -1,12 +1,12 @@
-package pe.com.agencymicroservice.controller;
+package pe.com.agencymicroservice.api.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pe.com.agencymicroservice.entities.Agency;
-import pe.com.agencymicroservice.http.response.AgencyResponse;
-import pe.com.agencymicroservice.service.AgencyService;
+import pe.com.agencymicroservice.domain.model.Agency;
+import pe.com.agencymicroservice.resource.AgencyResponse;
+import pe.com.agencymicroservice.domain.service.AgencyService;
 
 import java.util.List;
 
