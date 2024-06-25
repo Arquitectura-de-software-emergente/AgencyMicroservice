@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.com.agencymicroservice.api.client.GuideClient;
 import pe.com.agencymicroservice.api.client.TripClient;
+import pe.com.agencymicroservice.config.JwtUtil;
 import pe.com.agencymicroservice.mapping.dto.GuideDto;
+import pe.com.agencymicroservice.mapping.dto.LoginDto;
+import pe.com.agencymicroservice.mapping.dto.LoginResponseDto;
 import pe.com.agencymicroservice.mapping.dto.TripDto;
 import pe.com.agencymicroservice.domain.model.Agency;
 import pe.com.agencymicroservice.resource.AgencyResponse;
@@ -21,6 +24,9 @@ public class AgencyServiceImpl implements AgencyService {
     private AgencyRepository _agencyRepository;
 
     @Autowired
+    private JwtUtil jwtUtil;
+
+    @Autowired
     private GuideClient _guideClient;
 
     @Autowired
@@ -30,7 +36,6 @@ public class AgencyServiceImpl implements AgencyService {
     public Agency createAgency(Agency _agency) {
         return _agencyRepository.save(_agency);
     }
-
 
     @Override
     public List<AgencyResponse> getAllAgency() {
@@ -55,12 +60,20 @@ public class AgencyServiceImpl implements AgencyService {
 
         return responses;
     }
+
     public List<Agency> getAll() {
         return (List<Agency>) _agencyRepository.findAll();
     }
 
+    @Override
+    public LoginResponseDto authenticate(LoginDto loginDto) {
+        Agency agency = _agencyRepository.findByEmail(loginDto.getEmail())
+                .filter(a -> a.getPassword().equals(loginDto.getPassword()))
+                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
 
-
+        String token = jwtUtil.generateToken(loginDto.getEmail());
+        return new LoginResponseDto(agency.getEmail(), token, agency, true);
+    }
 
     @Override
     public void updateAgency(Agency _agency) {
@@ -72,16 +85,10 @@ public class AgencyServiceImpl implements AgencyService {
         _agencyRepository.deleteById(_id);
     }
 
-
-
     @Override
     public AgencyResponse getGuidesByAgencyId(int _agencyId){
-        //System.out.println("Entrghdfgdfghdfghdfghdfgo???????????????dskjdgf");
         Agency agency = _agencyRepository.findById(_agencyId).orElse(new Agency());
-        //System.out.println("Segundo");
-        //System.out.println("agency: " + _guideClient.findAllGuideByAgencyId(_agencyId));
         List<GuideDto> guidesDto = _guideClient.findAllGuideByAgencyId(_agencyId);
-        //System.out.println("tercero");
         List<TripDto> tripsDto = _tripClient.findAllTripByAgencyId(_agencyId);
         return AgencyResponse.builder()
                 .Id(agency.getId())
@@ -93,7 +100,5 @@ public class AgencyServiceImpl implements AgencyService {
                 .guidesList(guidesDto)
                 .tripsList(tripsDto)
                 .build();
-
     }
-
 }
